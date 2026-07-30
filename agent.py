@@ -26,7 +26,8 @@ from llm import ask_json
 
 from config import LOG_URL
 
-from logger import log_agent_response
+#from logger import log_agent_response
+from logger import log_llm_response
 
 
 
@@ -105,6 +106,6 @@ Current question:
         str(result),
     )
 
-    log_agent_response(result)
+    log_llm_response(result)
 
     return result
