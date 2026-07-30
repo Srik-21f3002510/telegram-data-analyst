@@ -68,7 +68,7 @@ LOG_BASE_URL = os.getenv(
 
 LOG_URL = os.getenv(
     "LOG_URL",
-    "https://your-host/run.jsonl"
+    "https://srik-21f3002510.github.io/telegram-data-analyst/logs/run.jsonl"
 )
 # --------------------------------------------------
 # Validation
