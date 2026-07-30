@@ -1,0 +1,50 @@
+name: Update JSONL Log
+
+on:
+  schedule:
+    # Run every 5 minutes
+    - cron: "*/5 * * * *"
+
+  workflow_dispatch:
+
+
+permissions:
+  contents: write
+
+
+jobs:
+
+  update-log:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      - name: Check log file exists
+        run: |
+          if [ ! -f logs/run.jsonl ]; then
+            echo "logs/run.jsonl does not exist yet"
+            exit 0
+          fi
+
+
+      - name: Commit updated log
+        run: |
+
+          git config user.name "github-actions"
+
+          git config user.email "github-actions@github.com"
+
+          git add logs/run.jsonl
+
+          git diff --cached --quiet || \
+          git commit -m "Update bot execution log"
+
+
+      - name: Push changes
+        run: |
+          git push
